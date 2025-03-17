@@ -1,0 +1,18 @@
+# Python venv
+*venv/
+*.venv/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+*.ipynb_checkpoints/
+
+# Python
+*__pycache__/
+
+# TPs enonces
+*.pdf
+
+# TPs notebooks
+*.ipynb
