@@ -16,3 +16,10 @@
 
 # TPs notebooks
 *.ipynb
+
+# TPs data
+tp*/assets/*
+
+# except the .placeholder file
+!tp*/assets/.placeholder
+
