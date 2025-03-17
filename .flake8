@@ -1,0 +1,4 @@
+# set line length to 120
+[flake8]
+max-line-length = 120
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv,.venv,.tox,.eggs
