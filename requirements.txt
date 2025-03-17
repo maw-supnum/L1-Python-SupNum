@@ -4,3 +4,6 @@ openpyxl
 numpy
 pandas
 pytest
+black
+flake8
+isort
