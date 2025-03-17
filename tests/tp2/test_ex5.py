@@ -1,9 +1,9 @@
-import unittest
-import sys
 import os
 import re
+import sys
+import unittest
 
-sys.path.append('../../tp2')  # Ajouter le chemin vers les modules du TP2
+sys.path.append("../../tp2")  # Ajouter le chemin vers les modules du TP2
 
 # Importer la fonction à tester
 from tp2.ex5 import pwdGenerate
@@ -21,21 +21,21 @@ class TestEx5(unittest.TestCase):
         """Test que le mot de passe contient au moins 2 lettres majuscules"""
         for _ in range(10):  # Tester plusieurs générations
             password = pwdGenerate()
-            majuscules = re.findall(r'[A-Z]', password)
+            majuscules = re.findall(r"[A-Z]", password)
             self.assertGreaterEqual(len(majuscules), 2)
 
     def test_pwdGenerate_chiffres(self):
         """Test que le mot de passe contient au moins 1 chiffre"""
         for _ in range(10):  # Tester plusieurs générations
             password = pwdGenerate()
-            chiffres = re.findall(r'[0-9]', password)
+            chiffres = re.findall(r"[0-9]", password)
             self.assertGreaterEqual(len(chiffres), 1)
 
     def test_pwdGenerate_symboles(self):
         """Test que le mot de passe contient au moins 1 symbole spécial"""
         for _ in range(10):  # Tester plusieurs générations
             password = pwdGenerate()
-            symboles = re.findall(r'[^\w\s]', password)
+            symboles = re.findall(r"[^\w\s]", password)
             self.assertGreaterEqual(len(symboles), 1)
 
     def test_pwdGenerate_aleatoire(self):

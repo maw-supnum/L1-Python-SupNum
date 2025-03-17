@@ -1,10 +1,11 @@
 import io
-import unittest
 import sys
+import unittest
 from unittest.mock import patch
+
 from tp2 import ex4
 
-sys.path.append('../../tp2')  # Ajouter le chemin vers les modules du TP2
+sys.path.append("../../tp2")  # Ajouter le chemin vers les modules du TP2
 
 
 class TestEx4(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestEx4(unittest.TestCase):
         self.assertGreaterEqual(ex4.reel2, 3.5)
         self.assertLessEqual(ex4.reel2, 33.5)
 
-    @patch('random.uniform', side_effect=[0.5, 15.0])
+    @patch("random.uniform", side_effect=[0.5, 15.0])
     def test_appel_function_random(self, mock_uniform):
         """Test que la fonction random.uniform est bien appelée avec les bons paramètres"""
         # Capturer la sortie standard
@@ -29,7 +30,7 @@ class TestEx4(unittest.TestCase):
         sys.stdout = captured_output
 
         try:
-            exec(open('../../tp2/ex4.py').read())
+            exec(open("../../tp2/ex4.py").read())
         except SystemExit:
             pass
 
@@ -42,4 +43,4 @@ class TestEx4(unittest.TestCase):
 
         # Vérifier l'affichage de la somme des éléments
         output = captured_output.getvalue()
-        self.assertIn('15.5', output)
+        self.assertIn("15.5", output)

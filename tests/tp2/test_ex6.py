@@ -1,18 +1,19 @@
-import unittest
-import sys
-import os
-from unittest.mock import patch, MagicMock
 import io
+import os
+import sys
+import unittest
+from unittest.mock import MagicMock, patch
 
-sys.path.append('../../tp2')  # Ajouter le chemin vers les modules du TP2
+sys.path.append("../../tp2")  # Ajouter le chemin vers les modules du TP2
 
 from tp2 import ex6
 
+
 class TestEx6(unittest.TestCase):
 
-    @patch('os.path.exists', return_value=True)
-    @patch('os.listdir', return_value=['fichier1.txt', 'dossier1'])
-    @patch('os.path.isdir', side_effect=[False, True])
+    @patch("os.path.exists", return_value=True)
+    @patch("os.listdir", return_value=["fichier1.txt", "dossier1"])
+    @patch("os.path.isdir", side_effect=[False, True])
     def test_chemin_download_windows(self, mock_isdir, mock_listdir, mock_exists):
         """Test que le chemin du dossier Downloads est correctement défini sous Windows"""
 
@@ -21,7 +22,7 @@ class TestEx6(unittest.TestCase):
         sys.stdout = captured_output
 
         try:
-            exec(open('../../tp2/ex6.py').read())
+            exec(open("../../tp2/ex6.py").read())
         except SystemExit:
             pass
 
@@ -30,11 +31,10 @@ class TestEx6(unittest.TestCase):
 
         # Vérifier l'affichage des éléments
         output = captured_output.getvalue()
-        self.assertIn('fichier1.txt (Fichier)', output)
-        self.assertIn('dossier1 (Dossier)', output)
-        
+        self.assertIn("fichier1.txt (Fichier)", output)
+        self.assertIn("dossier1 (Dossier)", output)
 
-    @patch('os.path.exists')
+    @patch("os.path.exists")
     def test_dossier_inexistant(self, mock_exists):
         """Test du comportement quand le dossier Downloads n'existe pas"""
         # Configuration des mocks
@@ -46,7 +46,8 @@ class TestEx6(unittest.TestCase):
 
         # Importer le module
         from tp2 import ex6
-        importlib = __import__('importlib')
+
+        importlib = __import__("importlib")
         importlib.reload(ex6)
 
         # Restaurer la sortie standard
@@ -64,5 +65,6 @@ class TestEx6(unittest.TestCase):
         print(f"expected reason: {expected_reason}")
         print("----------------------------------------------")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

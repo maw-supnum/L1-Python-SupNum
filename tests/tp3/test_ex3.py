@@ -1,12 +1,12 @@
-import unittest
-import sys
-import os
-from pathlib import Path
 import io
+import os
 import shutil
+import sys
+import unittest
+from pathlib import Path
 
 # Ajouter le chemin vers les modules du TP3
-sys.path.append('../../tp3')
+sys.path.append("../../tp3")
 
 
 class TestEx3(unittest.TestCase):
@@ -15,19 +15,25 @@ class TestEx3(unittest.TestCase):
     def setUp(self):
         """Préparation des tests - création des fichiers de test"""
         # Créer un dossier assets s'il n'existe pas
-        self.assets_dir = Path('assets')
+        self.assets_dir = Path("assets")
         self.assets_dir.mkdir(exist_ok=True)
 
         # Créer un fichier de test
-        self.test_file = self.assets_dir / 'test_ex3.txt'
-        with open(self.test_file, 'w', encoding='utf-8') as f:
-            f.write("Python est un langage de programmation. Python est facile à apprendre.\n")
-            f.write("Python est très populaire. On utilise Python pour différentes applications.\n")
-            f.write("Python permet de faire du web, de l'analyse de données, de l'IA, etc.")
+        self.test_file = self.assets_dir / "test_ex3.txt"
+        with open(self.test_file, "w", encoding="utf-8") as f:
+            f.write(
+                "Python est un langage de programmation. Python est facile à apprendre.\n"
+            )
+            f.write(
+                "Python est très populaire. On utilise Python pour différentes applications.\n"
+            )
+            f.write(
+                "Python permet de faire du web, de l'analyse de données, de l'IA, etc."
+            )
 
         # Fichier pour tester un mot inexistant
-        self.no_match_file = self.assets_dir / 'no_match_ex3.txt'
-        with open(self.no_match_file, 'w', encoding='utf-8') as f:
+        self.no_match_file = self.assets_dir / "no_match_ex3.txt"
+        with open(self.no_match_file, "w", encoding="utf-8") as f:
             f.write("Ce fichier ne contient pas le mot cherché.\n")
             f.write("Il n'y a aucune occurrence du terme spécifique.")
 
@@ -42,7 +48,7 @@ class TestEx3(unittest.TestCase):
     def test_remplacement_mot_existant(self):
         """Test de remplacement d'un mot existant dans le fichier"""
         # Faire une copie du fichier original pour préserver le contenu
-        test_file_copy = self.assets_dir / 'test_ex3_copy.txt'
+        test_file_copy = self.assets_dir / "test_ex3_copy.txt"
         shutil.copy(self.test_file, test_file_copy)
 
         # Rediriger l'entrée standard
@@ -54,7 +60,7 @@ class TestEx3(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex3.py').read())
+            exec(open("../../tp3/ex3.py").read())
         except SystemExit:
             pass
 
@@ -66,7 +72,7 @@ class TestEx3(unittest.TestCase):
         output = captured_output.getvalue()
 
         # Vérifier que le mot a bien été remplacé
-        with open(test_file_copy, 'r', encoding='utf-8') as f:
+        with open(test_file_copy, "r", encoding="utf-8") as f:
             new_content = f.read()
 
         self.assertIn("Nombre d'occurrences de 'Python': 5", output)
@@ -81,7 +87,7 @@ class TestEx3(unittest.TestCase):
     def test_remplacement_mot_inexistant(self):
         """Test de remplacement d'un mot inexistant dans le fichier"""
         # Faire une copie du fichier original pour préserver le contenu
-        no_match_copy = self.assets_dir / 'no_match_ex3_copy.txt'
+        no_match_copy = self.assets_dir / "no_match_ex3_copy.txt"
         shutil.copy(self.no_match_file, no_match_copy)
 
         # Rediriger l'entrée standard
@@ -93,7 +99,7 @@ class TestEx3(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex3.py').read())
+            exec(open("../../tp3/ex3.py").read())
         except SystemExit:
             pass
 
@@ -112,7 +118,7 @@ class TestEx3(unittest.TestCase):
     def test_fichier_inexistant(self):
         """Test avec un fichier inexistant"""
         # Rediriger l'entrée standard
-        fichier_inexistant = self.assets_dir / 'inexistant.txt'
+        fichier_inexistant = self.assets_dir / "inexistant.txt"
         sys.stdin = io.StringIO(f"{fichier_inexistant}\nPython\nJava")
 
         # Capturer la sortie standard
@@ -121,7 +127,7 @@ class TestEx3(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex3.py').read())
+            exec(open("../../tp3/ex3.py").read())
         except SystemExit:
             pass
 
@@ -131,8 +137,10 @@ class TestEx3(unittest.TestCase):
 
         # Vérifier les résultats
         output = captured_output.getvalue()
-        self.assertIn(f"Erreur : Le fichier '{fichier_inexistant}' n'existe pas.", output)
+        self.assertIn(
+            f"Erreur : Le fichier '{fichier_inexistant}' n'existe pas.", output
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

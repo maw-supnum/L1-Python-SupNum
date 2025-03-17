@@ -1,11 +1,11 @@
-import unittest
-import sys
-import os
-from pathlib import Path
 import io
+import os
+import sys
+import unittest
+from pathlib import Path
 
 # Ajouter le chemin vers les modules du TP3
-sys.path.append('../../tp3')
+sys.path.append("../../tp3")
 
 
 class TestEx2(unittest.TestCase):
@@ -14,19 +14,25 @@ class TestEx2(unittest.TestCase):
     def setUp(self):
         """Préparation des tests - création des fichiers de test"""
         # Créer un dossier assets s'il n'existe pas
-        self.assets_dir = Path('assets')
+        self.assets_dir = Path("assets")
         self.assets_dir.mkdir(exist_ok=True)
 
         # Créer un fichier de test avec des occurrences de mots
-        self.test_file = self.assets_dir / 'test_ex2.txt'
-        with open(self.test_file, 'w', encoding='utf-8') as f:
-            f.write("Python est un langage de programmation. Python est facile à apprendre.\n")
-            f.write("Python est très populaire. On utilise Python pour différentes applications.\n")
-            f.write("Python permet de faire du web, de l'analyse de données, de l'IA, etc.")
+        self.test_file = self.assets_dir / "test_ex2.txt"
+        with open(self.test_file, "w", encoding="utf-8") as f:
+            f.write(
+                "Python est un langage de programmation. Python est facile à apprendre.\n"
+            )
+            f.write(
+                "Python est très populaire. On utilise Python pour différentes applications.\n"
+            )
+            f.write(
+                "Python permet de faire du web, de l'analyse de données, de l'IA, etc."
+            )
 
         # Fichier sans occurrence
-        self.no_match_file = self.assets_dir / 'no_match.txt'
-        with open(self.no_match_file, 'w', encoding='utf-8') as f:
+        self.no_match_file = self.assets_dir / "no_match.txt"
+        with open(self.no_match_file, "w", encoding="utf-8") as f:
             f.write("Ce fichier ne contient pas le mot recherché.\n")
             f.write("Il n'y a aucune occurrence du terme spécifique.")
 
@@ -49,7 +55,7 @@ class TestEx2(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex2.py').read())
+            exec(open("../../tp3/ex2.py").read())
         except SystemExit:
             pass
 
@@ -72,7 +78,7 @@ class TestEx2(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex2.py').read())
+            exec(open("../../tp3/ex2.py").read())
         except SystemExit:
             pass
 
@@ -95,7 +101,7 @@ class TestEx2(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex2.py').read())
+            exec(open("../../tp3/ex2.py").read())
         except SystemExit:
             pass
 
@@ -110,7 +116,7 @@ class TestEx2(unittest.TestCase):
     def test_fichier_inexistant(self):
         """Test avec un fichier inexistant"""
         # Rediriger l'entrée standard
-        fichier_inexistant = self.assets_dir / 'inexistant.txt'
+        fichier_inexistant = self.assets_dir / "inexistant.txt"
         sys.stdin = io.StringIO(f"{fichier_inexistant}\nPython")
 
         # Capturer la sortie standard
@@ -119,7 +125,7 @@ class TestEx2(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex2.py').read())
+            exec(open("../../tp3/ex2.py").read())
         except SystemExit:
             pass
 
@@ -129,8 +135,10 @@ class TestEx2(unittest.TestCase):
 
         # Vérifier les résultats
         output = captured_output.getvalue()
-        self.assertIn(f"Erreur : Le fichier '{fichier_inexistant}' n'existe pas.", output)
+        self.assertIn(
+            f"Erreur : Le fichier '{fichier_inexistant}' n'existe pas.", output
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

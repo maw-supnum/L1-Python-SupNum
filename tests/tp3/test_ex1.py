@@ -1,11 +1,11 @@
-import unittest
-import sys
-import os
-from pathlib import Path
 import io
+import os
+import sys
+import unittest
+from pathlib import Path
 
 # Ajouter le chemin vers les modules du TP3
-sys.path.append('../../tp3')
+sys.path.append("../../tp3")
 
 
 class TestEx1(unittest.TestCase):
@@ -14,16 +14,18 @@ class TestEx1(unittest.TestCase):
     def setUp(self):
         """Préparation des tests - création des fichiers de test"""
         # Créer un dossier assets s'il n'existe pas
-        self.assets_dir = Path('assets')
+        self.assets_dir = Path("assets")
         self.assets_dir.mkdir(exist_ok=True)
 
         # Créer un fichier de test
-        self.test_file = self.assets_dir / 'test_ex1.txt'
-        with open(self.test_file, 'w', encoding='utf-8') as f:
-            f.write("Première ligne du fichier.\nDeuxième ligne avec des mots.\nTroisième ligne pour les tests.")
+        self.test_file = self.assets_dir / "test_ex1.txt"
+        with open(self.test_file, "w", encoding="utf-8") as f:
+            f.write(
+                "Première ligne du fichier.\nDeuxième ligne avec des mots.\nTroisième ligne pour les tests."
+            )
 
         # Créer un fichier vide
-        self.empty_file = self.assets_dir / 'empty.txt'
+        self.empty_file = self.assets_dir / "empty.txt"
         self.empty_file.touch()
 
     def tearDown(self):
@@ -45,7 +47,7 @@ class TestEx1(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex1.py').read())
+            exec(open("../../tp3/ex1.py").read())
         except SystemExit:
             pass
 
@@ -70,7 +72,7 @@ class TestEx1(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex1.py').read())
+            exec(open("../../tp3/ex1.py").read())
         except SystemExit:
             pass
 
@@ -87,7 +89,7 @@ class TestEx1(unittest.TestCase):
     def test_fichier_inexistant(self):
         """Test avec un fichier inexistant"""
         # Rediriger l'entrée standard
-        fichier_inexistant = self.assets_dir / 'inexistant.txt'
+        fichier_inexistant = self.assets_dir / "inexistant.txt"
         sys.stdin = io.StringIO(str(fichier_inexistant))
 
         # Capturer la sortie standard
@@ -96,7 +98,7 @@ class TestEx1(unittest.TestCase):
 
         # Exécuter le script
         try:
-            exec(open('../../tp3/ex1.py').read())
+            exec(open("../../tp3/ex1.py").read())
         except SystemExit:
             pass
 
@@ -117,5 +119,5 @@ class TestEx1(unittest.TestCase):
         print("----------------------------------------------")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

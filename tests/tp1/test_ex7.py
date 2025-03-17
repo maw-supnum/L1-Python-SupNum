@@ -1,6 +1,6 @@
-import unittest
 import io
 import sys
+import unittest
 from unittest.mock import patch
 
 
@@ -13,7 +13,7 @@ class TestEx7(unittest.TestCase):
         sys.stdout = captured_output
 
         # Modification du code pour injecter des valeurs de test
-        code = open('../../tp1/ex7.py').read()
+        code = open("../../tp1/ex7.py").read()
         code_modifie = "liste = [1, 2, 3, 4, 5]\n" + "\n".join(code.split("\n")[1:])
 
         # Exécuter le code modifié
@@ -36,7 +36,7 @@ class TestEx7(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex7.py').read()
+        code = open("../../tp1/ex7.py").read()
         code_modifie = "liste = []\n" + "\n".join(code.split("\n")[1:])
 
         try:
@@ -54,7 +54,7 @@ class TestEx7(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex7.py').read()
+        code = open("../../tp1/ex7.py").read()
         code_modifie = "liste = [42]\n" + "\n".join(code.split("\n")[1:])
 
         try:
@@ -72,8 +72,10 @@ class TestEx7(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex7.py').read()
-        code_modifie = "liste = [-5, -4, -3, -2, -1]\n" + "\n".join(code.split("\n")[1:])
+        code = open("../../tp1/ex7.py").read()
+        code_modifie = "liste = [-5, -4, -3, -2, -1]\n" + "\n".join(
+            code.split("\n")[1:]
+        )
 
         try:
             exec(code_modifie)
@@ -90,8 +92,10 @@ class TestEx7(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex7.py').read()
-        code_modifie = "liste = ['a', 'b', 'c', 'd', 'e']\n" + "\n".join(code.split("\n")[1:])
+        code = open("../../tp1/ex7.py").read()
+        code_modifie = "liste = ['a', 'b', 'c', 'd', 'e']\n" + "\n".join(
+            code.split("\n")[1:]
+        )
 
         try:
             exec(code_modifie)

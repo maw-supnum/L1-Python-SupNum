@@ -1,6 +1,6 @@
-import unittest
 import io
 import sys
+import unittest
 from unittest.mock import patch
 
 
@@ -14,7 +14,7 @@ class TestEx10(unittest.TestCase):
 
         # Exécuter le code
         try:
-            exec(open('../../tp1/ex10.py').read())
+            exec(open("../../tp1/ex10.py").read())
         except SystemExit:
             pass
 
@@ -26,7 +26,10 @@ class TestEx10(unittest.TestCase):
 
         # Vérifier les résultats attendus
         self.assertIn("Dictionnaire original des étudiants :", output)
-        self.assertIn("{'Salem': 12, 'Ba': 15, 'Mariem': 7, 'Sidi': 9.5, 'Med': 8.5, 'Issa': 11}", output)
+        self.assertIn(
+            "{'Salem': 12, 'Ba': 15, 'Mariem': 7, 'Sidi': 9.5, 'Med': 8.5, 'Issa': 11}",
+            output,
+        )
 
         self.assertIn("Étudiants validés (moyenne >= 10) :", output)
         self.assertIn("{'Salem': 12, 'Ba': 15, 'Issa': 11}", output)
@@ -41,10 +44,10 @@ class TestEx10(unittest.TestCase):
         sys.stdout = captured_output
 
         # Modifier le code pour utiliser un dictionnaire différent
-        code = open('../../tp1/ex10.py').read()
+        code = open("../../tp1/ex10.py").read()
         code_modifie = code.replace(
-            "etudiants = {\"Salem\": 12, \"Ba\": 15, \"Mariem\": 7, \"Sidi\": 9.5, \"Med\": 8.5, \"Issa\": 11}",
-            "etudiants = {\"Alice\": 18, \"Bob\": 9, \"Charlie\": 15, \"David\": 7, \"Eve\": 10}"
+            'etudiants = {"Salem": 12, "Ba": 15, "Mariem": 7, "Sidi": 9.5, "Med": 8.5, "Issa": 11}',
+            'etudiants = {"Alice": 18, "Bob": 9, "Charlie": 15, "David": 7, "Eve": 10}',
         )
 
         # Exécuter le code modifié
@@ -61,7 +64,9 @@ class TestEx10(unittest.TestCase):
 
         # Vérifier les résultats attendus
         self.assertIn("Dictionnaire original des étudiants :", output)
-        self.assertIn("{'Alice': 18, 'Bob': 9, 'Charlie': 15, 'David': 7, 'Eve': 10}", output)
+        self.assertIn(
+            "{'Alice': 18, 'Bob': 9, 'Charlie': 15, 'David': 7, 'Eve': 10}", output
+        )
 
         self.assertIn("Étudiants validés (moyenne >= 10) :", output)
         self.assertIn("{'Alice': 18, 'Charlie': 15, 'Eve': 10}", output)
@@ -74,10 +79,10 @@ class TestEx10(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex10.py').read()
+        code = open("../../tp1/ex10.py").read()
         code_modifie = code.replace(
-            "etudiants = {\"Salem\": 12, \"Ba\": 15, \"Mariem\": 7, \"Sidi\": 9.5, \"Med\": 8.5, \"Issa\": 11}",
-            "etudiants = {\"Alice\": 18, \"Bob\": 12, \"Charlie\": 15, \"David\": 10}"
+            'etudiants = {"Salem": 12, "Ba": 15, "Mariem": 7, "Sidi": 9.5, "Med": 8.5, "Issa": 11}',
+            'etudiants = {"Alice": 18, "Bob": 12, "Charlie": 15, "David": 10}',
         )
 
         try:
@@ -99,10 +104,10 @@ class TestEx10(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex10.py').read()
+        code = open("../../tp1/ex10.py").read()
         code_modifie = code.replace(
-            "etudiants = {\"Salem\": 12, \"Ba\": 15, \"Mariem\": 7, \"Sidi\": 9.5, \"Med\": 8.5, \"Issa\": 11}",
-            "etudiants = {\"Alice\": 9, \"Bob\": 8, \"Charlie\": 7, \"David\": 5}"
+            'etudiants = {"Salem": 12, "Ba": 15, "Mariem": 7, "Sidi": 9.5, "Med": 8.5, "Issa": 11}',
+            'etudiants = {"Alice": 9, "Bob": 8, "Charlie": 7, "David": 5}',
         )
 
         try:
@@ -124,10 +129,10 @@ class TestEx10(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        code = open('../../tp1/ex10.py').read()
+        code = open("../../tp1/ex10.py").read()
         code_modifie = code.replace(
-            "etudiants = {\"Salem\": 12, \"Ba\": 15, \"Mariem\": 7, \"Sidi\": 9.5, \"Med\": 8.5, \"Issa\": 11}",
-            "etudiants = {}"
+            'etudiants = {"Salem": 12, "Ba": 15, "Mariem": 7, "Sidi": 9.5, "Med": 8.5, "Issa": 11}',
+            "etudiants = {}",
         )
 
         try:

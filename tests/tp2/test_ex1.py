@@ -1,8 +1,8 @@
-import unittest
-import sys
 import os
+import sys
+import unittest
 
-sys.path.append('../../tp2')  # Ajouter le chemin vers les modules du TP2
+sys.path.append("../../tp2")  # Ajouter le chemin vers les modules du TP2
 
 # Importer les fonctions à tester
 from tp2.ex1 import inverser_tableau_boucle, inverser_tableau_reverse
@@ -63,5 +63,5 @@ class TestEx1(unittest.TestCase):
         self.assertEqual(resultat, ["e", "d", "c", "b", "a"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
