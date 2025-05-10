@@ -23,3 +23,24 @@ tp*/assets/*
 # except the .placeholder file
 !tp*/assets/.placeholder
 
+# assets
+assets/
+
+
+# ignore nbs
+nbs
+
+# tests
+tests
+
+# files for the course
+*.txt
+
+# README
+*README.md
+
+# flake8
+*.flake8
+
+# jsons
+*.json
