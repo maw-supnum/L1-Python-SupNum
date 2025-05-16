@@ -1,4 +1,5 @@
 import openpyxl
+import os
 from openpyxl import Workbook
 
 
@@ -8,7 +9,7 @@ def rechercher_notes_par_matricule():
     Affiche un message d'erreur si le matricule n'apparaît pas dans le fichier.
     """
     # Charger le classeur Excel
-    classeur = openpyxl.load_workbook("Notes_DEV110.xlsx")
+    classeur = openpyxl.load_workbook("tp4-from-scratch/Notes_DEV110.xlsx")
 
     # Sélectionner la première feuille
     feuille = classeur.active
@@ -21,6 +22,8 @@ def rechercher_notes_par_matricule():
 
     # Parcourir les lignes du fichier (on suppose que les données commencent à la ligne 2)
     for ligne in feuille.iter_rows(min_row=2, values_only=True):
+        if all(elm is None for elm in ligne):
+            break
         if ligne[0] == matricule_recherche:  # Première colonne contient le matricule
             print(f"Matricule: {ligne[0]}")
             print(f"Note DS: {ligne[1]}")
@@ -41,21 +44,23 @@ def meilleure_note_examen():
     Q2: Programme qui affiche le matricule de l'étudiant ayant la meilleure note d'examen.
     """
     # Charger le classeur Excel
-    classeur = openpyxl.load_workbook("Notes_DEV110.xlsx")
+    classeur = openpyxl.load_workbook("tp4-from-scratch/Notes_DEV110.xlsx")
 
     # Sélectionner la première feuille
     feuille = classeur.active
 
-    meilleure_note = -1
+    meilleure_note = 0
     meilleur_matricule = ""
 
     # Parcourir les lignes du fichier (on suppose que les données commencent à la ligne 2)
     for ligne in feuille.iter_rows(min_row=2, values_only=True):
+        if all(elm is None for elm in ligne):
+            break
         matricule = ligne[0]
         note_examen = ligne[2]
 
         # Vérifier si cette note est la meilleure jusqu'à présent
-        if note_examen and note_examen > meilleure_note:
+        if (note_examen is not None) and (note_examen > meilleure_note):
             meilleure_note = note_examen
             meilleur_matricule = matricule
 
@@ -72,7 +77,7 @@ def creer_fichier_moyennes():
     les matricules et les moyennes en algo et C++ (40% DS et 60% examen).
     """
     # Charger le classeur Excel source
-    classeur_source = openpyxl.load_workbook("Notes_DEV110.xlsx")
+    classeur_source = openpyxl.load_workbook("tp4-from-scratch/Notes_DEV110.xlsx")
     feuille_source = classeur_source.active
 
     # Créer un nouveau classeur pour les moyennes
@@ -87,6 +92,8 @@ def creer_fichier_moyennes():
     ligne_dest = 2  # Commencer à écrire à la ligne 2
 
     for ligne in feuille_source.iter_rows(min_row=2, values_only=True):
+        if all(elm is None for elm in ligne):
+            break
         matricule = ligne[0]
         note_ds = ligne[1]
         note_examen = ligne[2]
@@ -101,7 +108,7 @@ def creer_fichier_moyennes():
         ligne_dest += 1
 
     # Enregistrer le nouveau classeur
-    classeur_moyennes.save("Moyennes.xlsx")
+    classeur_moyennes.save("tp4-from-scratch/Moyennes.xlsx")
     print("Le fichier Moyennes.xlsx a été créé avec succès.")
 
     # Fermer les classeurs
@@ -115,7 +122,7 @@ def ajouter_feuille_moyenne():
     contenant les matricules et les moyennes.
     """
     # Charger le classeur Excel
-    classeur = openpyxl.load_workbook("Notes_DEV110.xlsx")
+    classeur = openpyxl.load_workbook("tp4-from-scratch/Notes_DEV110.xlsx")
 
     # Sélectionner la première feuille (pour lire les données)
     feuille_source = classeur.active
@@ -134,6 +141,8 @@ def ajouter_feuille_moyenne():
     ligne_dest = 2  # Commencer à écrire à la ligne 2
 
     for ligne in feuille_source.iter_rows(min_row=2, values_only=True):
+        if all(elm is None for elm in ligne):
+            break
         matricule = ligne[0]
         note_ds = ligne[1]
         note_examen = ligne[2]
@@ -142,13 +151,14 @@ def ajouter_feuille_moyenne():
         moyenne = ((note_ds if note_ds else 0) * 0.4) + ((note_examen if note_examen else 0) * 0.6)
 
         # Écrire les données dans la nouvelle feuille
+        
         feuille_moyenne.cell(row=ligne_dest, column=1, value=matricule)
         feuille_moyenne.cell(row=ligne_dest, column=2, value=round(moyenne, 2))
 
         ligne_dest += 1
 
     # Enregistrer le classeur
-    classeur.save("Notes_DEV110.xlsx")
+    classeur.save("tp4-from-scratch/Notes_DEV110.xlsx")
     print("La feuille 'Moyenne' a été ajoutée au classeur Notes_DEV110.xlsx avec succès.")
 
     # Fermer le classeur
