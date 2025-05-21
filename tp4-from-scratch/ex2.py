@@ -1,5 +1,5 @@
 import openpyxl
-from openpyxl import Workbook
+from openpyxl.styles import PatternFill
 
 
 def creer_feuille_bilan():
@@ -22,6 +22,16 @@ def creer_feuille_bilan():
     feuille_bilan['B4'] = "2- Nombre de cas pic"
     feuille_bilan['B5'] = "3- Date du jour pic en nombre de cas"
     feuille_bilan['C2'] = "Mauritanie"
+
+    fill = PatternFill(
+        start_color="FFFF99",
+        fill_type="solid"
+    )
+
+    feuille_bilan['B3'].fill = fill
+    feuille_bilan['B4'].fill = fill
+    feuille_bilan['B5'].fill = fill
+
 
     # Enregistrer le classeur
     classeur.save("Covid.xlsx")
