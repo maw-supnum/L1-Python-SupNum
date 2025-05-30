@@ -76,7 +76,7 @@ def calculer():
     parcours de la feuille Data.
     """
     # Charger le classeur Excel
-    classeur = openpyxl.load_workbook("Covid.xlsx")
+    classeur = openpyxl.load_workbook("tp4-from-scratch/Covid.xlsx")
 
     # Vérifier si les feuilles Bilan et Data existent
     if "Bilan" not in classeur.sheetnames:
@@ -126,7 +126,7 @@ def calculer():
     feuille_bilan['C5'] = date_jour_pic
 
     # Enregistrer le classeur
-    classeur.save("Covid.xlsx")
+    classeur.save("tp4-from-scratch/Covid.xlsx")
     print("Les calculs ont été effectués et les cellules ont été remplies avec succès.")
 
     # Fermer le classeur
